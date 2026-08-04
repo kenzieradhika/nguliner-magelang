@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --ng-black: #111111;
+    --ng-gray: #9a9a9a;
+    --ng-light: #f5f5f5;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.ng-serif {
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+@layer components {
+    .ng-container {
+        @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+    }
+
+    .ng-btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-700;
+    }
+
+    .ng-btn-outline {
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-900 transition hover:border-neutral-900 hover:bg-neutral-900 hover:text-white;
+    }
+
+    .ng-input {
+        @apply w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/10;
+    }
+
+    .ng-label {
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-neutral-500;
+    }
+
+    .ng-section-title {
+        @apply mb-2 text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl;
+    }
+
+    .ng-section-subtitle {
+        @apply mb-10 text-sm text-neutral-500;
+    }
+
+    .ng-tag {
+        @apply inline-flex items-center rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white;
+    }
+
+    .ng-tag-light {
+        @apply inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700;
+    }
+}
+
+.img-fade {
+    animation: imgFade 0.6s ease;
+}
+
+@keyframes imgFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}

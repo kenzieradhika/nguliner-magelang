@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#111111"/>
+  <text x="400" y="270" font-size="160" text-anchor="middle">🍳</text>
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" letter-spacing="4">NASI GORENG</text>
+  <text x="400" y="450" font-family="Arial, sans-serif" font-size="18" fill="#9a9a9a" text-anchor="middle" letter-spacing="2">NGULINER MAGELANG</text>
+</svg>
