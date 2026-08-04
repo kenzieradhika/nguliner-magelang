@@ -12,16 +12,17 @@
 @endsection
 
 @section('content')
-    <section class="border-b border-neutral-200 bg-neutral-50 py-12">
+    <section class="border-b border-ink-100 bg-cream-100 py-12">
         <div class="ng-container">
-            <h1 class="text-3xl font-bold tracking-tight">Peta Kuliner Magelang</h1>
-            <p class="mt-3 max-w-2xl text-sm text-neutral-500">Semua lokasi kuliner rekomendasi NGuliner dalam satu peta. Klik marker untuk detail.</p>
+            <p class="ng-eyebrow">Peta</p>
+            <h1 class="ng-page-title">Peta Kuliner Magelang</h1>
+            <p class="ng-page-subtitle max-w-2xl">Semua lokasi kuliner rekomendasi NGuliner dalam satu peta. Klik marker untuk detail.</p>
         </div>
     </section>
 
     <section class="py-8">
         <div class="ng-container">
-            <div id="map" class="rounded-2xl border border-neutral-200"></div>
+            <div id="map" class="rounded-2xl border border-ink-100 shadow-sm"></div>
         </div>
     </section>
 @endsection

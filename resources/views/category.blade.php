@@ -23,16 +23,17 @@
 @endsection
 
 @section('content')
-    <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <section class="border-b border-ink-100 bg-cream-100 py-16">
         <div class="ng-container">
-            <nav class="mb-4 text-xs text-neutral-400">
-                <a href="{{ route('home') }}" class="hover:text-neutral-900">Beranda</a>
-                <span class="mx-2">/</span>
-                <span class="text-neutral-600">{{ $category->name }}</span>
+            <nav class="mb-4 flex items-center gap-2 text-xs text-ink-400">
+                <a href="{{ route('home') }}" class="flex items-center gap-1 transition hover:text-ink-900"><x-icon name="home" class="h-3 w-3" /> Beranda</a>
+                <x-icon name="chevron-right" class="h-3 w-3" />
+                <span class="font-semibold text-ink-600">{{ $category->name }}</span>
             </nav>
-            <h1 class="text-3xl font-bold tracking-tight md:text-4xl">{{ $category->name }}</h1>
+            <p class="ng-eyebrow">Kategori Kuliner</p>
+            <h1 class="ng-page-title">{{ $category->name }}</h1>
             @if($category->description)
-                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-500">{{ $category->description }}</p>
+                <p class="ng-page-subtitle max-w-2xl">{{ $category->description }}</p>
             @endif
         </div>
     </section>
@@ -40,7 +41,12 @@
     <section class="py-16">
         <div class="ng-container">
             @if($places->isEmpty())
-                <p class="text-sm text-neutral-500">Belum ada kuliner di kategori ini.</p>
+                <div class="flex flex-col items-center py-20 text-center">
+                    <span class="flex h-16 w-16 items-center justify-center rounded-full bg-cream-100 text-ink-300">
+                        <x-icon name="utensils" class="h-7 w-7" />
+                    </span>
+                    <p class="mt-5 text-sm text-ink-500">Belum ada kuliner di kategori ini.</p>
+                </div>
             @else
                 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($places as $place)

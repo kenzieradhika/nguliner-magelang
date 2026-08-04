@@ -2,23 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --ng-black: #111111;
-    --ng-gray: #9a9a9a;
-    --ng-light: #f5f5f5;
-}
+@layer base {
+    :root {
+        color-scheme: light;
+    }
 
-html {
-    scroll-behavior: smooth;
-}
+    html {
+        scroll-behavior: smooth;
+    }
 
-body {
-    font-family: "Inter", "Segoe UI", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-}
+    body {
+        @apply bg-cream-50 font-sans text-ink-900 antialiased;
+        text-rendering: optimizeLegibility;
+    }
 
-.ng-serif {
-    font-family: "Playfair Display", Georgia, serif;
+    ::selection {
+        @apply bg-sambal-600 text-white;
+    }
+
+    :focus-visible {
+        @apply outline-none ring-2 ring-sambal-600 ring-offset-2 ring-offset-cream-50;
+    }
+
+    button,
+    a,
+    select,
+    input[type="checkbox"],
+    input[type="radio"],
+    summary {
+        cursor: pointer;
+    }
+
+    button:disabled,
+    [disabled] {
+        cursor: not-allowed;
+    }
 }
 
 @layer components {
@@ -26,38 +44,117 @@ body {
         @apply mx-auto w-full max-w-6xl px-5 md:px-8;
     }
 
-    .ng-btn {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-700;
+    /* ---------- Typography ---------- */
+
+    .ng-eyebrow {
+        @apply mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sambal-600;
     }
 
-    .ng-btn-outline {
-        @apply inline-flex items-center justify-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-900 transition hover:border-neutral-900 hover:bg-neutral-900 hover:text-white;
-    }
-
-    .ng-input {
-        @apply w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/10;
-    }
-
-    .ng-label {
-        @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-neutral-500;
+    .ng-eyebrow::before {
+        content: "";
+        @apply h-px w-8 bg-sambal-600/60;
     }
 
     .ng-section-title {
-        @apply mb-2 text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl;
+        @apply font-display text-3xl font-bold leading-tight tracking-tight text-ink-900 md:text-4xl;
     }
 
     .ng-section-subtitle {
-        @apply mb-10 text-sm text-neutral-500;
+        @apply mt-3 max-w-2xl text-sm leading-relaxed text-ink-500 md:text-base;
     }
 
+    .ng-page-title {
+        @apply font-display text-2xl font-bold tracking-tight text-ink-900 md:text-3xl;
+    }
+
+    .ng-page-subtitle {
+        @apply mt-1.5 text-sm text-ink-500;
+    }
+
+    /* ---------- Buttons ---------- */
+
+    .ng-btn {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-ink-700 focus-visible:ring-2 focus-visible:ring-ink-900 focus-visible:ring-offset-2 active:scale-[0.98];
+    }
+
+    .ng-btn-primary {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-sambal-600 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-sambal-600/30 transition duration-200 hover:bg-sambal-700 active:scale-[0.98];
+    }
+
+    .ng-btn-outline {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-ink-300 bg-transparent px-6 py-3 text-sm font-semibold text-ink-900 transition duration-200 hover:border-ink-900 hover:bg-ink-900 hover:text-white active:scale-[0.98];
+    }
+
+    .ng-btn-danger {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-red-200 bg-white px-4 py-2 text-xs font-semibold text-red-700 transition duration-200 hover:bg-red-600 hover:border-red-600 hover:text-white;
+    }
+
+    .ng-btn-sm {
+        @apply rounded-full px-4 py-2 text-xs;
+    }
+
+    /* ---------- Forms ---------- */
+
+    .ng-input {
+        @apply w-full rounded-xl border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 shadow-sm transition duration-200 placeholder:text-ink-300 focus:border-sambal-600 focus:ring-2 focus:ring-sambal-600/20;
+    }
+
+    .ng-label {
+        @apply mb-1.5 block text-xs font-bold uppercase tracking-wider text-ink-500;
+    }
+
+    /* ---------- Surfaces ---------- */
+
+    .ng-card {
+        @apply rounded-2xl border border-ink-100 bg-white shadow-sm;
+    }
+
+    .ng-table-card {
+        @apply overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-sm;
+    }
+
+    /* ---------- Tags & badges ---------- */
+
     .ng-tag {
-        @apply inline-flex items-center rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white;
+        @apply inline-flex items-center gap-1.5 rounded-full bg-ink-900 px-3 py-1 text-xs font-semibold text-white;
     }
 
     .ng-tag-light {
-        @apply inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700;
+        @apply inline-flex items-center gap-1.5 rounded-full border border-ink-100 bg-white px-3 py-1 text-xs font-semibold text-ink-700;
+    }
+
+    .ng-badge {
+        @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold;
+    }
+
+    .ng-badge-green {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .ng-badge-red {
+        @apply bg-red-100 text-red-800;
+    }
+
+    .ng-badge-amber {
+        @apply bg-amber-100 text-amber-800;
+    }
+
+    .ng-badge-neutral {
+        @apply bg-ink-100 text-ink-600;
+    }
+
+    /* ---------- Tables ---------- */
+
+    .ng-th {
+        @apply px-5 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-ink-400;
+    }
+
+    .ng-td {
+        @apply px-5 py-4 text-sm text-ink-700;
     }
 }
+
+/* ---------- Motion ---------- */
 
 .img-fade {
     animation: imgFade 0.6s ease;
@@ -66,4 +163,18 @@ body {
 @keyframes imgFade {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

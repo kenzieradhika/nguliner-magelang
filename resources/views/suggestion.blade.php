@@ -3,10 +3,11 @@
 @section('meta_title', 'Saran Tempat Baru — Bantu Kami Kenal Kuliner Magelang')
 
 @section('content')
-    <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <section class="border-b border-ink-100 bg-cream-100 py-16">
         <div class="ng-container">
-            <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Saran Tempat Baru</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-500">
+            <p class="ng-eyebrow">Bantu Kami Menemukan</p>
+            <h1 class="ng-page-title">Saran Tempat Baru</h1>
+            <p class="ng-page-subtitle max-w-2xl">
                 Tahu tempat makan enak yang belum ada di NGuliner? Bantu kami mengenalkannya ke lebih banyak orang.
             </p>
         </div>
@@ -18,21 +19,21 @@
                 <h2 class="ng-section-title">Cara Kerja</h2>
                 <ul class="mt-6 space-y-6 text-sm">
                     <li class="flex gap-4">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">1</span>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sambal-600 font-bold text-white shadow-sm shadow-sambal-600/30">1</span>
                         <div>
                             <p class="font-semibold">Kirim Saran</p>
                             <p class="mt-1 leading-relaxed text-neutral-500">Isi form di samping dengan info tempat yang kamu tahu.</p>
                         </div>
                     </li>
                     <li class="flex gap-4">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">2</span>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sambal-600 font-bold text-white shadow-sm shadow-sambal-600/30">2</span>
                         <div>
                             <p class="font-semibold">Tim Review</p>
                             <p class="mt-1 leading-relaxed text-neutral-500">Tim NGuliner memverifikasi informasi dan kualitas tempat.</p>
                         </div>
                     </li>
                     <li class="flex gap-4">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">3</span>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sambal-600 font-bold text-white shadow-sm shadow-sambal-600/30">3</span>
                         <div>
                             <p class="font-semibold">Tayang</p>
                             <p class="mt-1 leading-relaxed text-neutral-500">Tempat muncul di rekomendasi dan bisa dibuatkan microsite.</p>
@@ -42,7 +43,7 @@
             </div>
 
             <div class="lg:col-span-3">
-                <form action="{{ route('suggestion.store') }}" method="POST" class="rounded-3xl border border-neutral-200 p-8 md:p-10">
+                <form action="{{ route('suggestion.store') }}" method="POST" class="ng-card p-8 md:p-10">
                     @csrf
                     @if(session('success'))
                         <p class="mb-6 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700">{{ session('success') }}</p>
@@ -71,7 +72,7 @@
                             <textarea id="description" name="description" rows="5" maxlength="2000" class="ng-input" placeholder="Kenapa tempat ini layak direkomendasikan? Menu apa yang wajib dicoba?"></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="ng-btn mt-8 w-full !py-4">Kirim Saran</button>
+                    <button type="submit" class="ng-btn-primary mt-8 w-full !py-4"><x-icon name="send" class="h-4 w-4" /> Kirim Saran</button>
                 </form>
             </div>
         </div>

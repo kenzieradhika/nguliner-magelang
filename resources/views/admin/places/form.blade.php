@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="mb-8">
-        <a href="{{ route('admin.places.index') }}" class="text-sm text-neutral-400 hover:text-neutral-900">&larr; Kembali</a>
-        <h1 class="mt-2 text-2xl font-bold tracking-tight">{{ $place->exists ? 'Edit Kuliner' : 'Tambah Kuliner' }}</h1>
+        <a href="{{ route('admin.places.index') }}" class="text-sm text-ink-400 hover:text-ink-900">&larr; Kembali</a>
+        <h1 class="mt-2 ng-page-title">{{ $place->exists ? 'Edit Kuliner' : 'Tambah Kuliner' }}</h1>
     </div>
 
     <form action="{{ $place->exists ? route('admin.places.update', $place) : route('admin.places.store') }}" method="POST" enctype="multipart/form-data" class="max-w-4xl space-y-6">
@@ -14,8 +14,8 @@
             @method('PUT')
         @endif
 
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
-            <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-neutral-400">Informasi Dasar</h2>
+        <div class="rounded-2xl border border-ink-100 bg-white p-6">
+            <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-ink-400">Informasi Dasar</h2>
             <div class="grid gap-5 sm:grid-cols-2">
                 <div>
                     <label class="ng-label" for="name">Nama *</label>
@@ -44,8 +44,8 @@
             </div>
         </div>
 
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
-            <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-neutral-400">Lokasi &amp; Info Praktis</h2>
+        <div class="rounded-2xl border border-ink-100 bg-white p-6">
+            <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-ink-400">Lokasi &amp; Info Praktis</h2>
             <div class="grid gap-5 sm:grid-cols-2">
                 <div class="sm:col-span-2">
                     <label class="ng-label" for="address">Alamat</label>
@@ -70,7 +70,7 @@
                 <div>
                     <label class="ng-label" for="open_days">Hari Buka</label>
                     <input id="open_days" name="open_days" value="{{ old('open_days', $place->open_days) }}" maxlength="255" class="ng-input" placeholder="Mon,Tue,Wed,Thu,Fri,Sat,Sun">
-                    <p class="mt-1 text-[11px] text-neutral-400">Format: Mon,Tue,Wed,Thu,Fri,Sat,Sun</p>
+                    <p class="mt-1 text-[11px] text-ink-400">Format: Mon,Tue,Wed,Thu,Fri,Sat,Sun</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -93,8 +93,8 @@
             </div>
         </div>
 
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
-            <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-neutral-400">Media &amp; Status</h2>
+        <div class="rounded-2xl border border-ink-100 bg-white p-6">
+            <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-ink-400">Media &amp; Status</h2>
             <div class="grid gap-5 sm:grid-cols-2">
                 <div>
                     <label class="ng-label" for="image">Foto</label>
@@ -120,7 +120,7 @@
         </div>
 
         <div class="flex gap-3">
-            <button type="submit" class="ng-btn">Simpan</button>
+            <button type="submit" class="ng-btn-primary"><x-icon name="check-circle" class="h-4 w-4" /> Simpan</button>
             <a href="{{ route('admin.places.index') }}" class="ng-btn-outline">Batal</a>
         </div>
     </form>

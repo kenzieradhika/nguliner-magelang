@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="mb-8">
-        <a href="{{ route('admin.pages.index') }}" class="text-sm text-neutral-400 hover:text-neutral-900">&larr; Kembali</a>
-        <h1 class="mt-2 text-2xl font-bold tracking-tight">{{ $page->exists ? 'Edit Halaman' : 'Buat Halaman' }}</h1>
-        <p class="mt-1 text-sm text-neutral-500">Susun halaman dari blok-blok section di bawah.</p>
+        <a href="{{ route('admin.pages.index') }}" class="text-sm text-ink-400 hover:text-ink-900">&larr; Kembali</a>
+        <h1 class="mt-2 ng-page-title">{{ $page->exists ? 'Edit Halaman' : 'Buat Halaman' }}</h1>
+        <p class="mt-1 text-sm text-ink-500">Susun halaman dari blok-blok section di bawah.</p>
     </div>
 
     <form action="{{ $page->exists ? route('admin.pages.update', $page) : route('admin.pages.store') }}" method="POST" class="max-w-4xl space-y-6">
@@ -15,7 +15,7 @@
             @method('PUT')
         @endif
 
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
+        <div class="rounded-2xl border border-ink-100 bg-white p-6">
             <div class="grid gap-5 sm:grid-cols-2">
                 <div>
                     <label class="ng-label" for="title">Judul *</label>
@@ -40,14 +40,14 @@
             </div>
         </div>
 
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
+        <div class="rounded-2xl border border-ink-100 bg-white p-6">
             <div class="mb-5 flex items-center justify-between">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-neutral-400">Blok Section</h2>
+                <h2 class="text-sm font-bold uppercase tracking-widest text-ink-400">Blok Section</h2>
                 <button type="button" id="add-block" class="ng-btn !px-4 !py-2 !text-xs">+ Tambah Blok</button>
             </div>
             <div id="sections" class="space-y-4">
                 @foreach(old('sections', $page->sections ?? []) as $index => $section)
-                    <div class="block-item rounded-xl border border-neutral-200 p-4">
+                    <div class="block-item rounded-xl border border-ink-100 p-4">
                         <div class="flex items-center justify-between gap-3">
                             <select name="sections[{{ $index }}][type]" class="block-type ng-input !w-44" onchange="updateBlock(this)">
                                 @foreach(['heading' => 'Heading', 'text' => 'Text', 'image' => 'Gambar', 'list' => 'Daftar', 'quote' => 'Kutipan', 'cta' => 'Tombol CTA', 'embed' => 'Embed (HTML)'] as $value => $label)
@@ -65,7 +65,7 @@
         </div>
 
         <div class="flex gap-3">
-            <button type="submit" class="ng-btn">Simpan Halaman</button>
+            <button type="submit" class="ng-btn-primary"><x-icon name="check-circle" class="h-4 w-4" /> Simpan Halaman</button>
             <a href="{{ route('admin.pages.index') }}" class="ng-btn-outline">Batal</a>
         </div>
     </form>
@@ -88,7 +88,7 @@
         document.getElementById('add-block')?.addEventListener('click', () => {
             const container = document.getElementById('sections');
             const div = document.createElement('div');
-            div.className = 'block-item rounded-xl border border-neutral-200 p-4';
+            div.className = 'block-item rounded-xl border border-ink-100 p-4';
             div.innerHTML = `
                 <div class="flex items-center justify-between gap-3">
                     <select name="sections[${blockIndex}][type]" class="block-type ng-input !w-44" onchange="updateBlock(this)">

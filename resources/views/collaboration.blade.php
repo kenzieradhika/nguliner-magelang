@@ -3,10 +3,11 @@
 @section('meta_title', 'Kolaborasi — Iklan, Endorse & Review Bersama NGuliner Magelang')
 
 @section('content')
-    <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <section class="border-b border-ink-100 bg-cream-100 py-16">
         <div class="ng-container">
-            <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Kolaborasi</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-500">
+            <p class="ng-eyebrow">Iklan, Endorse &amp; Partnership</p>
+            <h1 class="ng-page-title">Kolaborasi</h1>
+            <p class="ng-page-subtitle max-w-2xl">
                 Terbuka untuk iklan &amp; endorse, review resto/UMKM, dan partnership konten. Isi form di bawah dan tim kami akan menghubungi kamu.
             </p>
         </div>
@@ -18,37 +19,37 @@
                 <h2 class="ng-section-title">Kenapa Kolaborasi?</h2>
                 <ul class="mt-6 space-y-6 text-sm">
                     <li class="flex gap-4">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">1</span>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sambal-600 font-bold text-white shadow-sm shadow-sambal-600/30">1</span>
                         <div>
                             <p class="font-semibold">Jangkauan Lokal</p>
                             <p class="mt-1 leading-relaxed text-neutral-500">Terhubung dengan pecinta kuliner Magelang dan sekitarnya.</p>
                         </div>
                     </li>
                     <li class="flex gap-4">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">2</span>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sambal-600 font-bold text-white shadow-sm shadow-sambal-600/30">2</span>
                         <div>
                             <p class="font-semibold">Konten Otentik</p>
                             <p class="mt-1 leading-relaxed text-neutral-500">Review jujur yang dipercaya audiens, fokus pada rasa dan pengalaman.</p>
                         </div>
                     </li>
                     <li class="flex gap-4">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">3</span>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sambal-600 font-bold text-white shadow-sm shadow-sambal-600/30">3</span>
                         <div>
                             <p class="font-semibold">Support UMKM</p>
                             <p class="mt-1 leading-relaxed text-neutral-500">Kami bangga membantu resto dan pelaku usaha lokal lebih dikenal.</p>
                         </div>
                     </li>
                 </ul>
-                <div class="mt-10 rounded-2xl border border-neutral-200 p-6">
+                <div class="mt-10 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
                     <p class="text-sm font-semibold">Atau hubungi langsung:</p>
                     <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-sm text-neutral-600 underline-offset-4 hover:underline">
-                        Instagram @ngulinermagelang
+                        <x-icon name="instagram" class="h-4 w-4" /> Instagram @ngulinermagelang
                     </a>
                 </div>
             </div>
 
             <div class="lg:col-span-3">
-                <form action="{{ route('collaboration.store') }}" method="POST" class="rounded-3xl border border-neutral-200 p-8 md:p-10">
+                <form action="{{ route('collaboration.store') }}" method="POST" class="ng-card p-8 md:p-10">
                     @csrf
                     @if(session('success'))
                         <p class="mb-6 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700">{{ session('success') }}</p>
@@ -88,7 +89,7 @@
                             <textarea id="message" name="message" rows="5" maxlength="2000" class="ng-input" placeholder="Ceritakan kebutuhan kolaborasimu..."></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="ng-btn mt-8 w-full !py-4">Kirim Pengajuan</button>
+                    <button type="submit" class="ng-btn-primary mt-8 w-full !py-4"><x-icon name="send" class="h-4 w-4" /> Kirim Pengajuan</button>
                 </form>
             </div>
         </div>

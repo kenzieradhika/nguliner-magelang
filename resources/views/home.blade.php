@@ -23,33 +23,50 @@
 @endsection
 
 @section('content')
-    <section class="relative overflow-hidden bg-neutral-950 text-white">
-        <img src="{{ url('/img/hero.svg') }}" alt="" class="absolute inset-0 h-full w-full object-cover opacity-40" loading="eager">
-        <div class="ng-container relative flex min-h-[70vh] flex-col items-center justify-center py-24 text-center">
-            <p class="mb-6 text-[11px] font-semibold uppercase tracking-[0.4em] text-neutral-400">Kuliner Magelang &amp; Sekitarnya</p>
-            <h1 class="max-w-3xl text-4xl font-extrabold leading-tight tracking-tighter md:text-6xl">
+    <section class="relative overflow-hidden bg-ink-900 text-white">
+        <img src="{{ url('/img/hero.svg') }}" alt="" class="absolute inset-0 h-full w-full object-cover opacity-35" loading="eager">
+        <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-transparent to-ink-900/80"></div>
+        <div class="ng-container relative flex min-h-[72vh] flex-col items-center justify-center py-24 text-center">
+            <p class="mb-6 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.4em] text-sambal-400">
+                <x-icon name="compass" class="h-3.5 w-3.5" /> Kuliner Magelang &amp; Sekitarnya
+            </p>
+            <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
                 Referensi Kuliner<br class="hidden md:block">
-                <span class="ng-serif font-semibold italic">No.1 di Magelang</span>
+                <span class="italic text-sambal-400">No.1 di Magelang</span>
             </h1>
-            <p class="mt-6 max-w-xl text-sm leading-relaxed text-neutral-400 md:text-base">
+            <p class="mt-6 max-w-xl text-sm leading-relaxed text-ink-100/80 md:text-base">
                 Rekomendasi makan Magelang: bakso legendaris, es dawet, martabak, nasi goreng magelangan, hingga street food yang layak dicoba.
             </p>
             <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-                <a href="#rekomendasi" class="ng-btn !bg-white !text-neutral-900 hover:!bg-neutral-200">Lihat Rekomendasi</a>
-                <a href="{{ route('map') }}" class="ng-btn-outline !border-white/30 !text-white hover:!bg-white hover:!text-neutral-900">Lihat Peta Kuliner</a>
+                <a href="#rekomendasi" class="ng-btn-primary !px-8 !py-3.5">Lihat Rekomendasi</a>
+                <a href="{{ route('map') }}" class="ng-btn-outline !border-white/30 !text-white hover:!bg-white hover:!text-ink-900">Lihat Peta Kuliner</a>
+            </div>
+            <div class="mt-16 grid w-full max-w-2xl grid-cols-3 gap-4 border-t border-white/15 pt-8 text-center">
+                <div>
+                    <p class="font-display text-2xl font-bold text-sambal-400 md:text-3xl">{{ $categories->sum('place_count') }}+</p>
+                    <p class="mt-1 text-[11px] uppercase tracking-widest text-ink-100/60">Tempat Kuliner</p>
+                </div>
+                <div>
+                    <p class="font-display text-2xl font-bold text-sambal-400 md:text-3xl">{{ $categories->count() }}</p>
+                    <p class="mt-1 text-[11px] uppercase tracking-widest text-ink-100/60">Kategori</p>
+                </div>
+                <div>
+                    <p class="font-display text-2xl font-bold text-sambal-400 md:text-3xl">{{ $igPosts->count() }}</p>
+                    <p class="mt-1 text-[11px] uppercase tracking-widest text-ink-100/60">Update IG</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="rekomendasi" class="py-20">
+    <section id="rekomendasi" class="py-20 md:py-24">
         <div class="ng-container">
-            <p class="ng-section-subtitle !mb-2">Rekomendasi Hari Ini</p>
+            <p class="ng-eyebrow">Rekomendasi Hari Ini</p>
             <h2 class="ng-section-title">Pilihan Terbaik Hari Ini</h2>
             <p class="ng-section-subtitle">Berganti otomatis setiap hari — dirotasi dari kuliner unggulan Magelang.</p>
             @if($dailyPicks->isEmpty())
-                <p class="text-sm text-neutral-500">Belum ada rekomendasi untuk hari ini.</p>
+                <p class="mt-8 text-sm text-ink-500">Belum ada rekomendasi untuk hari ini.</p>
             @else
-                <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($dailyPicks as $place)
                         <x-place-card :place="$place" />
                     @endforeach
@@ -58,15 +75,18 @@
         </div>
     </section>
 
-    <section class="border-y border-neutral-200 bg-neutral-50 py-20">
+    <section class="border-y border-ink-100 bg-cream-100 py-20 md:py-24">
         <div class="ng-container">
-            <p class="ng-section-subtitle !mb-2">Terbaru &amp; Legendaris</p>
+            <p class="ng-eyebrow">Terbaru &amp; Legendaris</p>
             <div class="mb-10 flex items-end justify-between gap-4">
                 <div>
                     <h2 class="ng-section-title">Rekomendasi Terbaru</h2>
-                    <p class="ng-section-subtitle !mb-0">Update tempat makan terbaru dan legendaris di Magelang.</p>
+                    <p class="ng-section-subtitle">Update tempat makan terbaru dan legendaris di Magelang.</p>
                 </div>
-                <a href="{{ route('search') }}" class="hidden whitespace-nowrap text-sm font-medium underline-offset-4 hover:underline sm:block">Lihat Semua</a>
+                <a href="{{ route('search') }}" class="group hidden items-center gap-1.5 whitespace-nowrap text-sm font-bold text-sambal-600 underline-offset-4 transition hover:text-sambal-700 hover:underline sm:flex">
+                    Lihat Semua
+                    <x-icon name="arrow-right" class="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                </a>
             </div>
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach($latest as $place)
@@ -76,19 +96,21 @@
         </div>
     </section>
 
-    <section id="kategori" class="py-20">
+    <section id="kategori" class="py-20 md:py-24">
         <div class="ng-container">
-            <p class="ng-section-subtitle !mb-2">Kategori</p>
+            <p class="ng-eyebrow">Kategori</p>
             <h2 class="ng-section-title">Jelajahi Kategori Kuliner</h2>
             <p class="ng-section-subtitle">Dari bakso legendaris sampai street food kekinian.</p>
-            <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+            <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
                 @foreach($categories as $category)
-                    <a href="{{ route('category.show', $category->slug) }}" class="group flex items-center justify-between rounded-2xl border border-neutral-200 px-6 py-6 transition hover:border-neutral-900 hover:bg-neutral-900 hover:text-white">
+                    <a href="{{ route('category.show', $category->slug) }}" class="group flex items-center justify-between rounded-2xl border border-ink-100 bg-white px-6 py-6 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-ink-900 hover:bg-ink-900 hover:text-white hover:shadow-lg">
                         <div>
-                            <p class="font-semibold">{{ $category->name }}</p>
-                            <p class="mt-1 text-xs text-neutral-400">{{ $category->place_count }} tempat</p>
+                            <p class="font-bold">{{ $category->name }}</p>
+                            <p class="mt-1 text-xs text-ink-400 group-hover:text-ink-100/60">{{ $category->place_count }} tempat</p>
                         </div>
-                        <svg class="h-4 w-4 text-neutral-300 transition group-hover:translate-x-1 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/></svg>
+                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-cream-100 text-sambal-600 transition group-hover:bg-white/10 group-hover:text-white">
+                            <x-icon name="chevron-right" class="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </span>
                     </a>
                 @endforeach
             </div>
@@ -96,22 +118,24 @@
     </section>
 
     @if($igPosts->isNotEmpty())
-        <section class="border-y border-neutral-200 bg-neutral-50 py-20">
+        <section class="border-y border-ink-100 bg-cream-100 py-20 md:py-24">
             <div class="ng-container">
                 <div class="mb-10 flex items-end justify-between gap-4">
                     <div>
-                        <p class="ng-section-subtitle !mb-2">Instagram</p>
+                        <p class="ng-eyebrow">Instagram</p>
                         <h2 class="ng-section-title">@ngulinermagelang</h2>
-                        <p class="ng-section-subtitle !mb-0">Update kuliner terbaru dari feed Instagram kami.</p>
+                        <p class="ng-section-subtitle">Update kuliner terbaru dari feed Instagram kami.</p>
                     </div>
-                    <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="hidden whitespace-nowrap text-sm font-medium underline-offset-4 hover:underline sm:block">Follow Kami</a>
+                    <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="group hidden items-center gap-1.5 whitespace-nowrap text-sm font-bold text-sambal-600 underline-offset-4 transition hover:text-sambal-700 hover:underline sm:flex">
+                        <x-icon name="instagram" class="h-3.5 w-3.5" /> Follow Kami
+                    </a>
                 </div>
                 <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
                     @foreach($igPosts as $post)
-                        <a href="{{ $post->permalink }}" target="_blank" rel="noopener" class="group relative block overflow-hidden rounded-xl bg-neutral-200">
+                        <a href="{{ $post->permalink }}" target="_blank" rel="noopener" class="group relative block overflow-hidden rounded-xl bg-ink-100 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
                             <img src="{{ $post->image_url }}" alt="{{ Str::limit(strip_tags($post->caption), 40) }}" loading="lazy" class="aspect-square w-full object-cover transition duration-500 group-hover:scale-105">
-                            <span class="absolute inset-0 flex items-center justify-center bg-neutral-900/0 text-white opacity-0 transition group-hover:bg-neutral-900/40 group-hover:opacity-100">
-                                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 3H8a5 5 0 0 0-5 5v8a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V8a5 5 0 0 0-5-5Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <span class="absolute inset-0 flex items-center justify-center bg-ink-900/0 text-white opacity-0 transition duration-200 group-hover:bg-ink-900/40 group-hover:opacity-100">
+                                <x-icon name="instagram" class="h-5 w-5" />
                             </span>
                         </a>
                     @endforeach
@@ -136,7 +160,7 @@
                             <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-white"></span>Partnership konten</li>
                         </ul>
                         <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-                            <a href="{{ route('collaboration.create') }}" class="ng-btn !bg-white !text-neutral-900 hover:!bg-neutral-200">Ajukan Kolaborasi</a>
+                            <a href="{{ route('collaboration.create') }}" class="ng-btn !bg-white !text-ink-900 hover:!bg-cream-100">Ajukan Kolaborasi</a>
                             <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="ng-btn-outline !border-white/30 !text-white hover:!bg-white hover:!text-neutral-900">Instagram</a>
                         </div>
                     </div>

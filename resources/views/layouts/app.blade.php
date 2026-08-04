@@ -17,47 +17,51 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
     <title>@yield('meta_title', config('app.name'))</title>
     <link rel="icon" href="{{ url('/img/hero.svg') }}" type="image/svg+xml">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('head')
     @stack('head')
 </head>
-<body class="bg-white text-neutral-900 antialiased">
-    <header class="border-b border-neutral-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+<body class="bg-cream-50 text-ink-900 antialiased">
+    <x-icons />
+    <header class="sticky top-0 z-40 border-b border-ink-100 bg-cream-50/90 backdrop-blur">
         <div class="ng-container flex h-16 items-center justify-between gap-4">
-            <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <span class="text-xl font-extrabold tracking-tighter">NGULINER</span>
-                <span class="hidden text-[11px] font-semibold uppercase tracking-[0.25em] text-neutral-400 sm:block">Magelang</span>
+            <a href="{{ route('home') }}" class="group flex items-center gap-2.5">
+                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-sambal-600 text-white shadow-sm shadow-sambal-600/30 transition group-hover:bg-sambal-700">
+                    <x-icon name="utensils" class="h-4.5 w-4.5 h-[18px] w-[18px]" />
+                </span>
+                <span class="text-lg font-extrabold tracking-tighter">NGULINER</span>
+                <span class="hidden text-[11px] font-semibold uppercase tracking-[0.25em] text-ink-400 sm:block">Magelang</span>
             </a>
-            <nav class="hidden items-center gap-7 text-sm font-medium md:flex">
-                <a href="{{ route('home') }}#rekomendasi" class="transition hover:text-neutral-500">Rekomendasi</a>
-                <a href="{{ route('home') }}#kategori" class="transition hover:text-neutral-500">Kategori</a>
-                <a href="{{ route('map') }}" class="transition hover:text-neutral-500">Peta</a>
-                <a href="{{ route('collaboration.create') }}" class="transition hover:text-neutral-500">Kolaborasi</a>
+            <nav class="hidden items-center gap-7 text-sm font-semibold md:flex">
+                <a href="{{ route('home') }}#rekomendasi" class="text-ink-500 transition hover:text-ink-900">Rekomendasi</a>
+                <a href="{{ route('home') }}#kategori" class="text-ink-500 transition hover:text-ink-900">Kategori</a>
+                <a href="{{ route('map') }}" class="text-ink-500 transition hover:text-ink-900">Peta</a>
+                <a href="{{ route('collaboration.create') }}" class="text-ink-500 transition hover:text-ink-900">Kolaborasi</a>
                 @auth
-                    <a href="{{ route('admin.dashboard') }}" class="ng-btn !px-4 !py-2">Admin</a>
+                    <a href="{{ route('admin.dashboard') }}" class="ng-btn-primary !px-4 !py-2">Admin</a>
                 @endauth
             </nav>
             <div class="flex items-center gap-3">
-                <a href="{{ route('search') }}" aria-label="Cari" class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 transition hover:border-neutral-900">
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.34-4.34M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+                <a href="{{ route('search') }}" aria-label="Cari" class="flex h-9 w-9 items-center justify-center rounded-full border border-ink-100 bg-white text-ink-600 transition hover:border-ink-900 hover:text-ink-900">
+                    <x-icon name="search" class="h-4 w-4" />
                 </a>
-                <button id="nav-toggle" class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 md:hidden" aria-label="Menu">
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+                <button id="nav-toggle" class="flex h-9 w-9 items-center justify-center rounded-full border border-ink-100 bg-white text-ink-600 md:hidden" aria-label="Menu">
+                    <x-icon name="menu" class="h-4 w-4" />
                 </button>
             </div>
         </div>
-        <div id="nav-mobile" class="hidden border-t border-neutral-100 bg-white px-5 py-4 md:hidden">
-            <nav class="flex flex-col gap-3 text-sm font-medium">
+        <div id="nav-mobile" class="hidden border-t border-ink-100 bg-white px-5 py-4 md:hidden">
+            <nav class="flex flex-col gap-3 text-sm font-semibold text-ink-700">
                 <a href="{{ route('home') }}#rekomendasi">Rekomendasi</a>
                 <a href="{{ route('home') }}#kategori">Kategori</a>
                 <a href="{{ route('map') }}">Peta</a>
                 <a href="{{ route('collaboration.create') }}">Kolaborasi</a>
                 <a href="{{ route('search') }}">Cari Kuliner</a>
                 @auth
-                    <a href="{{ route('admin.dashboard') }}">Admin Panel</a>
+                    <a href="{{ route('admin.dashboard') }}" class="ng-btn-primary !px-4 !py-2">Admin Panel</a>
                 @endauth
             </nav>
         </div>
@@ -67,38 +71,43 @@
         @yield('content')
     </main>
 
-    <footer class="border-t border-neutral-200 bg-neutral-50">
+    <footer class="border-t border-ink-100 bg-cream-100">
         <div class="ng-container grid gap-10 py-14 md:grid-cols-3">
             <div>
-                <p class="text-lg font-extrabold tracking-tighter">NGULINER <span class="text-neutral-400">MAGELANG</span></p>
-                <p class="mt-3 max-w-xs text-sm leading-relaxed text-neutral-500">
+                <p class="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-sambal-600 text-white">
+                        <x-icon name="utensils" class="h-4 w-4" />
+                    </span>
+                    NGuliner <span class="font-sans text-ink-400">Magelang</span>
+                </p>
+                <p class="mt-4 max-w-xs text-sm leading-relaxed text-ink-500">
                     Referensi kuliner Magelang. Support resto &amp; UMKM lokal, dari yang legendaris hingga yang baru muncul.
                 </p>
             </div>
             <div>
-                <p class="text-xs font-semibold uppercase tracking-widest text-neutral-400">Jelajahi</p>
-                <ul class="mt-4 space-y-2.5 text-sm">
-                    <li><a href="{{ route('map') }}" class="transition hover:text-neutral-900">Peta Kuliner</a></li>
-                    <li><a href="{{ route('search') }}" class="transition hover:text-neutral-900">Pencarian</a></li>
-                    <li><a href="{{ route('collaboration.create') }}" class="transition hover:text-neutral-900">Kolaborasi</a></li>
-                    <li><a href="{{ route('suggestion.create') }}" class="transition hover:text-neutral-900">Saran Tempat</a></li>
+                <p class="text-xs font-bold uppercase tracking-widest text-ink-400">Jelajahi</p>
+                <ul class="mt-4 space-y-2.5 text-sm font-medium">
+                    <li><a href="{{ route('map') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="map-pin" class="h-3.5 w-3.5 text-sambal-600" /> Peta Kuliner</a></li>
+                    <li><a href="{{ route('search') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="search" class="h-3.5 w-3.5 text-sambal-600" /> Pencarian</a></li>
+                    <li><a href="{{ route('collaboration.create') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="briefcase" class="h-3.5 w-3.5 text-sambal-600" /> Kolaborasi</a></li>
+                    <li><a href="{{ route('suggestion.create') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="lightbulb" class="h-3.5 w-3.5 text-sambal-600" /> Saran Tempat</a></li>
                 </ul>
             </div>
             <div>
-                <p class="text-xs font-semibold uppercase tracking-widest text-neutral-400">Halaman</p>
-                <ul class="mt-4 space-y-2.5 text-sm">
-                    <li><a href="{{ route('page.show', 'tentang') }}" class="transition hover:text-neutral-900">Tentang</a></li>
-                    <li><a href="{{ route('page.show', 'kerja-sama') }}" class="transition hover:text-neutral-900">Kerja Sama</a></li>
+                <p class="text-xs font-bold uppercase tracking-widest text-ink-400">Halaman</p>
+                <ul class="mt-4 space-y-2.5 text-sm font-medium">
+                    <li><a href="{{ route('page.show', 'tentang') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="info" class="h-3.5 w-3.5 text-sambal-600" /> Tentang</a></li>
+                    <li><a href="{{ route('page.show', 'kerja-sama') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="handshake" class="h-3.5 w-3.5 text-sambal-600" /> Kerja Sama</a></li>
                     <li>
-                        <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="transition hover:text-neutral-900">Instagram @ngulinermagelang</a>
+                        <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="instagram" class="h-3.5 w-3.5 text-sambal-600" /> @ngulinermagelang</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="border-t border-neutral-200">
-            <div class="ng-container flex flex-col items-center justify-between gap-2 py-6 text-xs text-neutral-400 md:flex-row">
+        <div class="border-t border-ink-100">
+            <div class="ng-container flex flex-col items-center justify-between gap-2 py-6 text-xs text-ink-400 md:flex-row">
                 <p>&copy; {{ now()->year }} NGuliner Magelang</p>
-                <p>Support Resto &amp; UMKM Lokal</p>
+                <p class="flex items-center gap-1.5">Support Resto &amp; UMKM Lokal</p>
             </div>
         </div>
     </footer>
