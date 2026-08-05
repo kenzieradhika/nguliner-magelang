@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\SuggestionController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin', 'ng-hardening'])->group(function () {
     Route::get('/', DashboardController::class)->name('admin.dashboard');
 
     Route::resource('places', PlaceController::class)

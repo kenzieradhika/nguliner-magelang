@@ -109,6 +109,22 @@ Otomatis tiap pukul 03.00 — daftarkan scheduler di cron/Windows Task Scheduler
 4. Daftarkan scheduler & queue worker (`QUEUE_CONNECTION=database`, jalankan `php artisan queue:work` untuk email).
 5. Ganti password admin default.
 
+## Keamanan Native (C/C++ + FFI)
+
+Layer keamanan berbasis library native `native/ngsecurity.dll` (C++17) yang
+dipanggil PHP via FFI — lihat `native/README.md`:
+
+- **Anti session hijacking** (`ng-hardening` middleware di grup `/admin`):
+  sesi diikat ke sidik jari perangkat (UA + Accept-Language, opsional IP)
+  via HMAC-SHA256 native, dicek dengan perbandingan **constant-time**.
+  Perangkat berbeda → sesi di-invalidate + redirect ke login.
+- **CSPRNG** terpisah (BCryptGenRandom) dan primitif SHA-256/HMAC mandiri.
+- Cek status: `php artisan security:ffi-status [--bench]`.
+- Jika FFI/DLL tidak ada, aplikasi tetap jalan (fallback otomatis ke
+  `hash_hmac`/`hash_equals`/`random_bytes`), hanya log warning.
+
+Aktifkan di `php.ini`: `extension=ffi` dan `ffi.enable=true`.
+
 ## Struktur Penting
 
 ```

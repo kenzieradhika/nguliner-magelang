@@ -28,3 +28,8 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# native build artifacts (keep the .dll)
+native/*.obj
+native/*.exp
+native/*.lib
