@@ -118,6 +118,10 @@ dipanggil PHP via FFI — lihat `native/README.md`:
   sesi diikat ke sidik jari perangkat (UA + Accept-Language, opsional IP)
   via HMAC-SHA256 native, dicek dengan perbandingan **constant-time**.
   Perangkat berbeda → sesi di-invalidate + redirect ke login.
+- **Pusat Keamanan** (`/admin/keamanan`): semua insiden tertangkap otomatis
+  (login gagal/brute force, login terkunci, CSRF mismatch, percobaan bajak
+  sesi, login berhasil) — badge merah + banner muncul di setiap halaman admin,
+  bahkan insiden terkecil. Insiden sejenis dari IP sama digabung (counter) 5 menit.
 - **CSPRNG** terpisah (BCryptGenRandom) dan primitif SHA-256/HMAC mandiri.
 - Cek status: `php artisan security:ffi-status [--bench]`.
 - Jika FFI/DLL tidak ada, aplikasi tetap jalan (fallback otomatis ke

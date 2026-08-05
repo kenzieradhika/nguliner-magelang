@@ -143,6 +143,10 @@
         @apply bg-ink-100 text-ink-600;
     }
 
+    .ng-badge-blue {
+        @apply bg-blue-100 text-blue-800;
+    }
+
     /* ---------- Tables ---------- */
 
     .ng-th {

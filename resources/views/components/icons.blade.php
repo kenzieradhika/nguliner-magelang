@@ -55,5 +55,7 @@
         <symbol id="ng-quote" viewBox="0 0 24 24"><path d="M10 11H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4c0 5-2.5 7-5 8"/><path d="M20 11h-5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4c0 5-2.5 7-5 8"/></symbol>
         <symbol id="ng-flame" viewBox="0 0 24 24"><path d="M12 2c1 4.5-4 6.5-4 11a4 4 0 0 0 8 0c0-2-.8-3-.8-3s2.8 1.8 2.8 5a6 6 0 0 1-12 0c0-5.5 6-9.5 6-13Z"/></symbol>
         <symbol id="ng-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1.5 1.5 0 0 0 2.1-2.1"/><path d="m13.5 14.5 3.5-3.5"/><path d="M15 4h4l2 3-4.5 4.5"/><path d="M9 4H5L3 7l4.5 4.5"/><path d="m7.5 11.5 3.5 3.5"/><path d="M6.5 14.5 4 17a1.5 1.5 0 0 0 2.1 2.1l2-2"/></symbol>
+        <symbol id="ng-check" viewBox="0 0 24 24"><path d="m4 12.5 5.5 5.5L20 6.5"/></symbol>
+        <symbol id="ng-alert-triangle" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></symbol>
     </defs>
 </svg>

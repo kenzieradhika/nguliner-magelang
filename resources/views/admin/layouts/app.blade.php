@@ -63,6 +63,16 @@
                 </a>
 
                 <p class="px-3 pb-1 pt-5 text-[10px] font-bold uppercase tracking-widest text-ink-400">Sistem</p>
+                <a href="{{ route('admin.security.index') }}" class="relative flex items-center gap-3 rounded-xl px-3 py-2.5 font-semibold transition duration-150 {{ request()->routeIs('admin.security.*') ? 'bg-ink-900 text-white' : 'text-ink-600 hover:bg-cream-100 hover:text-ink-900' }}">
+                    <x-icon name="shield" class="h-4 w-4 shrink-0" />
+                    <span class="flex-1">Keamanan</span>
+                    @if($securityUnread = \App\Models\SecurityEvent::unread()->count())
+                        <span class="flex items-center gap-1">
+                            <span class="absolute right-1.5 top-2 h-2 w-2 animate-ping rounded-full bg-red-500 opacity-75"></span>
+                            <span class="relative rounded-full bg-red-600 px-2 py-0.5 text-[10px] font-bold text-white">{{ $securityUnread }}</span>
+                        </span>
+                    @endif
+                </a>
                 <a href="{{ route('admin.backup.index') }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-semibold transition duration-150 {{ request()->routeIs('admin.backup.*') ? 'bg-ink-900 text-white' : 'text-ink-600 hover:bg-cream-100 hover:text-ink-900' }}">
                     <x-icon name="database" class="h-4 w-4 shrink-0" /> Backup
                 </a>
@@ -101,6 +111,19 @@
 
         <div class="ml-60 flex-1">
             <main class="p-8">
+                @php
+                    $securityUnread = \App\Models\SecurityEvent::unread()->count();
+                    $securityUnreadHigh = \App\Models\SecurityEvent::unread()->whereIn('severity', ['high', 'critical'])->count();
+                @endphp
+                @if($securityUnread)
+                    <a href="{{ route('admin.security.index') }}" class="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-sm font-semibold text-red-800 transition hover:bg-red-100 {{ $securityUnreadHigh ? '' : 'border-amber-200 bg-amber-50 text-amber-900 hover:bg-amber-100' }}">
+                        <x-icon name="{{ $securityUnreadHigh ? 'alert-triangle' : 'alert-circle' }}" class="h-5 w-5 shrink-0" />
+                        <span class="flex-1">
+                            {{ $securityUnread }} insiden keamanan belum dibaca{{ $securityUnreadHigh ? ' (termasuk serangan serius)' : '' }} — klik untuk melihat.
+                        </span>
+                        <x-icon name="arrow-right" class="h-4 w-4 shrink-0" />
+                    </a>
+                @endif
                 @if(session('success'))
                     <div class="mb-6 flex items-center gap-2.5 rounded-xl border border-green-100 bg-green-50 px-5 py-4 text-sm font-medium text-green-800">
                         <x-icon name="check-circle" class="h-4 w-4 shrink-0 text-green-600" /> {{ session('success') }}

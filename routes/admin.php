@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MicrositeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SecurityEventController;
 use App\Http\Controllers\Admin\SuggestionController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,12 @@ Route::prefix('admin')->middleware(['auth', 'admin', 'ng-hardening'])->group(fun
     Route::delete('backup', [BackupController::class, 'destroy'])->name('admin.backup.destroy');
 
     Route::get('audit-logs', [AuditLogController::class, 'index'])->name('admin.audit.index');
+
+    Route::get('keamanan', [SecurityEventController::class, 'index'])->name('admin.security.index');
+    Route::put('keamanan/{event}/read', [SecurityEventController::class, 'markRead'])->name('admin.security.read');
+    Route::put('keamanan/read-all', [SecurityEventController::class, 'markAllRead'])->name('admin.security.read-all');
+    Route::delete('keamanan/{event}', [SecurityEventController::class, 'destroy'])->name('admin.security.destroy');
+    Route::delete('keamanan', [SecurityEventController::class, 'destroyAll'])->name('admin.security.destroy-all');
 
     Route::middleware('superadmin')->group(function () {
         Route::get('users', [UserController::class, 'index'])->name('admin.users.index');

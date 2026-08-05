@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Security\NativeGuard;
+use App\Services\SecurityEventService;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -39,6 +40,14 @@ class NativeSessionGuard
                 'ip' => $request->ip(),
                 'ua' => $request->userAgent(),
             ]);
+
+            app(SecurityEventService::class)->record(
+                'session_hijack',
+                'Sesi diakses dari perangkat/IP berbeda — potensi pembajakan sesi.',
+                ['expected_fingerprint' => substr($session->get('ng_fp'), 0, 16).'…', 'ip' => $request->ip()],
+                $request,
+                'critical',
+            );
 
             $session->invalidate();
             $request->session()->regenerateToken();

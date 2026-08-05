@@ -22,4 +22,25 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),
         );
+
+        $exceptions->renderable(function (\Symfony\Component\HttpKernel\Exception\HttpException $e, Request $request): void {
+            $isCsrf = $e->getStatusCode() === 419
+                && $e->getPrevious() instanceof \Illuminate\Session\TokenMismatchException;
+
+            if (! $isCsrf) {
+                return;
+            }
+
+            try {
+                app(\App\Services\SecurityEventService::class)->record(
+                    'csrf_mismatch',
+                    'Token CSRF tidak cocok (form kadaluarsa atau payload mencurigakan).',
+                    ['url' => $request->fullUrl()],
+                    $request,
+                    'low',
+                );
+            } catch (\Throwable $ignored) {
+                // jangan sampai perekaman error menggagalkan response
+            }
+        });
     })->create();
