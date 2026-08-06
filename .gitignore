@@ -33,3 +33,4 @@ Thumbs.db
 native/*.obj
 native/*.exp
 native/*.lib
+cookies.txt

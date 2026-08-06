@@ -4,9 +4,9 @@
 {{ $details }}
 
 <strong>Masuk ke panel admin</strong> untuk menindaklanjuti:
-{{ route('admin.dashboard') }}
+{{ route('filament.admin.pages.dashboard') }}
 
-<x-mail::button :url="route('admin.dashboard')">
+<x-mail::button :url="route('filament.admin.pages.dashboard')">
     Buka Admin Panel
 </x-mail::button>
 

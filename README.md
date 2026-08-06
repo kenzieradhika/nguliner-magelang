@@ -60,8 +60,17 @@ Buka http://127.0.0.1:8000
 
 ## Panel Admin (`/admin`)
 
-Dashboard · Kuliner · Kategori · Halaman CMS · Microsite · Kolaborasi ·
-Review · Saran Tempat · Feed Instagram · Backup · Audit Log · Pengguna (superadmin).
+Dibangun dengan **Filament 3** (`app/Filament`). Panel (`AdminPanelProvider`)
+menggunakan branding sambal `#C2410C` dan tetap memakai middleware keamanan native
+(`NativeSessionGuard` → anti session hijacking).
+
+Menu: Dashboard (statistik + grafik) · Kuliner · Kategori · Halaman CMS · Microsite ·
+Kolaborasi · Review · Saran Tempat · Feed Instagram (+ import JSON) · Keamanan
+(badge insiden belum dibaca) · Backup Database · Audit Log · Pengguna (khusus superadmin).
+
+Route admin kustom lama (`routes/admin.php`) sudah dinonaktifkan dan digantikan
+resource Filament; login memakai halaman `/admin/login` Filament (atau `/login` biasa,
+keduanya redirect ke dashboard admin).
 
 ## Email Development
 
@@ -91,6 +100,8 @@ Detail: [python/scraper/README.md](python/scraper/README.md)
 
 ## Backup
 
+Via menu **Admin › Backup Database** (jalankan, unduh, hapus, rotasi otomatis 14 file).
+
 ```bash
 php artisan app:backup          # manual — simpan di storage/app/backups (rotasi 14)
 ```
@@ -118,9 +129,9 @@ dipanggil PHP via FFI — lihat `native/README.md`:
   sesi diikat ke sidik jari perangkat (UA + Accept-Language, opsional IP)
   via HMAC-SHA256 native, dicek dengan perbandingan **constant-time**.
   Perangkat berbeda → sesi di-invalidate + redirect ke login.
-- **Pusat Keamanan** (`/admin/keamanan`): semua insiden tertangkap otomatis
-  (login gagal/brute force, login terkunci, CSRF mismatch, percobaan bajak
-  sesi, login berhasil) — badge merah + banner muncul di setiap halaman admin,
+- **Pusat Keamanan** (menu **Admin › Keamanan**, `/admin/keamanan`): semua insiden
+  tertangkap otomatis (login gagal/brute force, login terkunci, CSRF mismatch,
+  percobaan bajak sesi, login berhasil) — badge merah belum dibaca di navigasi,
   bahkan insiden terkecil. Insiden sejenis dari IP sama digabung (counter) 5 menit.
 - **CSPRNG** terpisah (BCryptGenRandom) dan primitif SHA-256/HMAC mandiri.
 - Cek status: `php artisan security:ffi-status [--bench]`.

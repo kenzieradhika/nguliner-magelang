@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap');
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+/* ============================================================
+   NGULINER · Admin Console
+   Editorial-minimal restyle of the Filament panel.
+   Warm canvas · sambal accent · serif numerals · calm motion
+   ============================================================ */
+
+:root {
+    --ng-cream: #F7F3EC;
+    --ng-ink: #1C1917;
+    --ng-sambal: #C2410C;
+    --ng-sambal-soft: rgb(194 65 12 / 0.12);
+    --ng-hairline: rgb(28 25 23 / 0.06);
+    --ng-muted: #79716B;
+    --ng-card: rgb(255 255 255 / 0.96);
+}
+
+/* ---- Warm neutral canvas ---- */
+
+body {
+    background-color: var(--ng-cream);
+}
+
+.fi-sidebar {
+    background: rgba(28, 25, 23, 0.02);
+    border-right: 1px solid var(--ng-hairline);
+}
+
+.fi-sidebar-header {
+    background: transparent;
+    padding-bottom: 0.5rem;
+}
+
+/* Sidebar group labels — quiet, editorial */
+.fi-sidebar-group-label {
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.6rem !important;
+    font-weight: 700;
+    color: rgb(120 111 98 / 0.95) !important;
+}
+
+/* Sidebar items — calm hover & focus */
+.fi-sidebar-item-button {
+    border-radius: 0.75rem;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.fi-sidebar-item-button:hover {
+    background-color: rgb(28 25 23 / 0.05);
+}
+
+.fi-sidebar-item-button:focus-visible {
+    outline: 2px solid rgb(194 65 12 / 0.6);
+    outline-offset: 2px;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background-color: rgb(28 25 23);
+    box-shadow: inset 3px 0 0 var(--ng-sambal), inset 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+/* Collapsed sidebar active icon glow */
+.fi-sidebar-item-active .fi-sidebar-item-icon {
+    color: #FDBA74;
+}
+
+/* === Top scroll area === */
+.fi-topbar {
+    background: rgb(247 243 234 / 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--ng-hairline);
+}
+
+/* === Cards — hairline border, soft lift === */
+.fi-section,
+.fi-wi-stats-overview-stat {
+    border: 1px solid var(--ng-hairline);
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 2px rgb(28 25 23 / 0.03), 0 16px 40px -24px rgb(28 25 23 / 0.18);
+    background-color: var(--ng-card);
+}
+
+.fi-wi-stats-overview-stat {
+    position: relative;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.fi-wi-stats-overview-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgb(28 25 23 / 0.04), 0 24px 48px -24px rgb(28 25 23 / 0.28);
+}
+
+.fi-section-header {
+    background: transparent;
+    border-bottom: 1px solid rgb(28 25 23 / 0.05);
+}
+
+/* === Stats overview: editorial numerals + accent ring === */
+.fi-wi-stats-overview-stat-icon {
+    color: var(--ng-sambal);
+}
+
+.fi-wi-stats-overview-stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ng-muted);
+}
+
+.fi-wi-stats-overview-stat-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ng-ink);
+}
+
+/* === Buttons: minimal, softened === */
+.fi-btn {
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.fi-btn:focus-visible {
+    outline: 2px solid rgb(194 65 12 / 0.55);
+    outline-offset: 2px;
+}
+
+.fi-btn:hover {
+    transform: translateY(-1px);
+}
+
+.fi-btn-primary {
+    box-shadow: 0 8px 20px -12px rgb(194 65 12 / 0.55);
+}
+
+/* === Inputs === */
+.fi-input {
+    border-radius: 0.75rem;
+    background-color: rgb(255 255 255 / 0.7);
+    border: 1px solid rgb(28 25 23 / 0.1);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fi-input:focus,
+.fi-input:focus-visible {
+    border-color: rgb(194 65 12 / 0.6);
+    box-shadow: 0 0 0 3px var(--ng-sambal-soft);
+}
+
+/* === Tables === */
+.fi-table thead th {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ng-muted) !important;
+    background-color: transparent;
+}
+
+.fi-table tbody tr {
+    transition: background-color 0.12s ease;
+}
+
+.fi-table tbody tr:hover {
+    background-color: rgb(247 243 234 / 0.6) !important;
+}
+
+.fi-table tbody tr:nth-child(even) {
+    background-color: rgb(247 243 234 / 0.25);
+}
+
+/* === Badges: soft pills === */
+.fi-badge {
+    border-radius: 9999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* === Tabs: minimal underline === */
+.fi-tabs-item {
+    border-radius: 0.75rem;
+    transition: background-color 0.15s ease;
+}
+
+.fi-tabs-item-active {
+    box-shadow: inset 0 0 0 1px rgb(194 65 12 / 0.2);
+}
+
+/* === Placeholder / empty states === */
+.fi-ta-empty-state {
+    border-radius: 1.25rem;
+    border: 1.5px dashed rgb(28 25 23 / 0.12);
+}
+
+/* === Login page === */
+.fi-simple-layout {
+    background-color: rgb(247 243 234);
+}
+
+.fi-simple-main {
+    border-radius: 1.5rem;
+    border: 1px solid var(--ng-hairline);
+    box-shadow: 0 24px 64px -32px rgb(28 25 23 / 0.35);
+}
+
+/* === Typography polish === */
+.fi-headings,
+.fi-prose h1,
+.fi-prose h2 {
+    letter-spacing: -0.02em;
+}
+
+/* === Pagination === */
+.fi-pagination-item,
+.fi-pagination-ellipsis {
+    border-radius: 0.75rem;
+}
+
+.fi-pagination-item[aria-current='page'] {
+    background-color: rgb(194 65 12 / 0.12);
+    color: rgb(124 34 4);
+    font-weight: 700;
+}
+
+/* === Notifications / toasts === */
+.fi-no-notification {
+    border-radius: 1rem;
+    box-shadow: 0 16px 40px -24px rgb(28 25 23 / 0.3);
+}
+
+/* === Custom scrollbar (WebKit) === */
+.fi-sidebar *,
+.fi-main-ctn {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(28 25 23 / 0.15) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(28 25 23 / 0.15);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(194 65 12 / 0.4);
+    background-clip: content-box;
+}
+
+/* === Global search input === */
+.fi-global-search-input input[type='search'] {
+    border-radius: 9999px;
+}
+
+/* === Tables: row click affordance (recordUrl) === */
+tr.fi-ta-record-url:hover {
+    cursor: pointer;
+}

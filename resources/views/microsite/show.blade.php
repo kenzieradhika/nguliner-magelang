@@ -96,7 +96,7 @@
                 <h2 class="ng-section-title">Suasana &amp; Menu</h2>
                 <div class="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
                     @foreach($microsite->gallery as $image)
-                        <img src="{{ $image }}" alt="Galeri {{ $place->name }}" class="aspect-square w-full rounded-2xl object-cover shadow-sm transition duration-300 hover:scale-[1.02]" loading="lazy">
+                        <img src="{{ str_starts_with($image, 'http') ? $image : asset('storage/'.$image) }}" alt="Galeri {{ $place->name }}" class="aspect-square w-full rounded-2xl object-cover shadow-sm transition duration-300 hover:scale-[1.02]" loading="lazy">
                     @endforeach
                 </div>
             </div>

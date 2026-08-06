@@ -8,6 +8,7 @@ use App\Models\Place;
 use App\Models\PlaceSuggestion;
 use App\Models\User;
 use App\Models\Review;
+use Filament\Notifications\Notification as FilamentNotification;
 use Illuminate\Support\Facades\Mail;
 
 class NotificationService
@@ -33,6 +34,16 @@ class NotificationService
 
         foreach ($admins as $admin) {
             Mail::to($admin)->queue(new NewSubmissionMail($type, $name, $details));
+
+            FilamentNotification::make()
+                ->title("{$type} baru: {$name}")
+                ->body($details)
+                ->icon(match ($type) {
+                    'Kolaborasi' => 'heroicon-o-hand-raised',
+                    'Review' => 'heroicon-o-star',
+                    default => 'heroicon-o-light-bulb',
+                })
+                ->sendToDatabase($admin);
         }
     }
 }

@@ -27,8 +27,9 @@
                         <p class="mt-4 text-[15px] leading-relaxed text-ink-600">{{ $section['content'] ?? '' }}</p>
                         @break
                     @case('image')
-                        @if(!empty($section['content']))
-                            <img src="{{ $section['content'] }}" alt="" class="mt-8 w-full rounded-2xl" loading="lazy">
+                        @php($src = $section['image'] ?? $section['content'] ?? '')
+                        @if(!empty($src))
+                            <img src="{{ str_starts_with($src, 'http') ? $src : asset('storage/'.$src) }}" alt="" class="mt-8 w-full rounded-2xl" loading="lazy">
                         @endif
                         @break
                     @case('list')

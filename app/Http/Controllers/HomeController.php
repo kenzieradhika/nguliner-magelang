@@ -20,6 +20,7 @@ class HomeController extends Controller
             ->get();
         $categories = Category::withCount('places as place_count')
             ->whereHas('places', fn ($q) => $q->where('is_published', true))
+            ->orderBy('sort_order')
             ->get();
         $igPosts = IgPost::latest('posted_at')->take(6)->get();
 

@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -13,10 +15,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
     'category_id', 'name', 'slug', 'tagline', 'description', 'address',
     'latitude', 'longitude', 'whatsapp', 'open_days', 'open_time', 'close_time',
     'price_range', 'tips', 'since_year', 'is_legendary', 'is_featured',
-    'image', 'views', 'is_published',
+    'image', 'views', 'is_published', 'publish_at',
 ])]
 class Place extends Model
 {
+    use HasFactory;
+    use SoftDeletes;
     protected function casts(): array
     {
         return [
@@ -26,6 +30,7 @@ class Place extends Model
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
             'views' => 'integer',
+            'publish_at' => 'datetime',
         ];
     }
 

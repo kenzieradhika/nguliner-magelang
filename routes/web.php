@@ -7,6 +7,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\MicrositeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SearchController;
@@ -29,13 +30,19 @@ Route::get('/saran', [SuggestionController::class, 'create'])->name('suggestion.
 Route::post('/saran', [SuggestionController::class, 'store'])->name('suggestion.store');
 Route::get('/halaman/{slug}', [PageController::class, 'show'])->name('page.show');
 
+Route::middleware(['auth', \App\Http\Middleware\EnsureUserIsAdmin::class])->group(function () {
+    Route::get('/admin/preview/page/{page}', [PreviewController::class, 'page'])->name('admin.preview.page');
+    Route::get('/admin/preview/place/{place}', [PreviewController::class, 'place'])->name('admin.preview.place');
+    Route::get('/admin/preview/microsite/{microsite}', [PreviewController::class, 'microsite'])->name('admin.preview.microsite');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/admin.php';
+// require __DIR__.'/admin.php'; // Digantikan panel Filament (app/Providers/Filament/AdminPanelProvider.php)
 require __DIR__.'/auth.php';
 
 Route::get('/{slug}', [MicrositeController::class, 'show'])->name('microsite.show');

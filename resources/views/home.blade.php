@@ -28,14 +28,14 @@
         <div class="absolute inset-0 bg-gradient-to-b from-ink-900/60 via-transparent to-ink-900/80"></div>
         <div class="ng-container relative flex min-h-[72vh] flex-col items-center justify-center py-24 text-center">
             <p class="mb-6 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.4em] text-sambal-400">
-                <x-icon name="compass" class="h-3.5 w-3.5" /> Kuliner Magelang &amp; Sekitarnya
+                <x-icon name="compass" class="h-3.5 w-3.5" /> {{ site_setting('hero_eyebrow') }}
             </p>
             <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-                Referensi Kuliner<br class="hidden md:block">
-                <span class="italic text-sambal-400">No.1 di Magelang</span>
+                {{ site_setting('hero_title') }}<br class="hidden md:block">
+                <span class="italic text-sambal-400">{{ site_setting('hero_title_italic') }}</span>
             </h1>
             <p class="mt-6 max-w-xl text-sm leading-relaxed text-ink-100/80 md:text-base">
-                Rekomendasi makan Magelang: bakso legendaris, es dawet, martabak, nasi goreng magelangan, hingga street food yang layak dicoba.
+                {{ site_setting('hero_subtitle') }}
             </p>
             <div class="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a href="#rekomendasi" class="ng-btn-primary !px-8 !py-3.5">Lihat Rekomendasi</a>

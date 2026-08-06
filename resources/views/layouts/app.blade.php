@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="@yield('meta_description', 'Referensi kuliner Magelang: bakso, es dawet, martabak, nasi goreng magelangan, street food. Rekomendasi makan Magelang terpercaya.')">
+    <meta name="description" content="@yield('meta_description', site_setting('meta_description'))">
     <meta property="og:title" content="@yield('meta_title', config('app.name'))">
-    <meta property="og:description" content="@yield('meta_description', 'Referensi kuliner Magelang: bakso, es dawet, martabak, nasi goreng magelangan, street food. Rekomendasi makan Magelang terpercaya.')">
+    <meta property="og:description" content="@yield('meta_description', site_setting('meta_description'))">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     @hasSection('og_image')
@@ -41,7 +41,7 @@
                 <a href="{{ route('map') }}" class="text-ink-500 transition hover:text-ink-900">Peta</a>
                 <a href="{{ route('collaboration.create') }}" class="text-ink-500 transition hover:text-ink-900">Kolaborasi</a>
                 @auth
-                    <a href="{{ route('admin.dashboard') }}" class="ng-btn-primary !px-4 !py-2">Admin</a>
+                    <a href="{{ route('filament.admin.pages.dashboard') }}" class="ng-btn-primary !px-4 !py-2">Admin</a>
                 @endauth
             </nav>
             <div class="flex items-center gap-3">
@@ -61,7 +61,7 @@
                 <a href="{{ route('collaboration.create') }}">Kolaborasi</a>
                 <a href="{{ route('search') }}">Cari Kuliner</a>
                 @auth
-                    <a href="{{ route('admin.dashboard') }}" class="ng-btn-primary !px-4 !py-2">Admin Panel</a>
+                    <a href="{{ route('filament.admin.pages.dashboard') }}" class="ng-btn-primary !px-4 !py-2">Admin Panel</a>
                 @endauth
             </nav>
         </div>
@@ -81,7 +81,7 @@
                     NGuliner <span class="font-sans text-ink-400">Magelang</span>
                 </p>
                 <p class="mt-4 max-w-xs text-sm leading-relaxed text-ink-500">
-                    Referensi kuliner Magelang. Support resto &amp; UMKM lokal, dari yang legendaris hingga yang baru muncul.
+                    {{ site_setting('tagline') }}
                 </p>
             </div>
             <div>
@@ -99,14 +99,14 @@
                     <li><a href="{{ route('page.show', 'tentang') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="info" class="h-3.5 w-3.5 text-sambal-600" /> Tentang</a></li>
                     <li><a href="{{ route('page.show', 'kerja-sama') }}" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="handshake" class="h-3.5 w-3.5 text-sambal-600" /> Kerja Sama</a></li>
                     <li>
-                        <a href="https://www.instagram.com/ngulinermagelang/" target="_blank" rel="noopener" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="instagram" class="h-3.5 w-3.5 text-sambal-600" /> @ngulinermagelang</a>
+                        <a href="{{ site_setting('instagram_url') }}" target="_blank" rel="noopener" class="flex items-center gap-2 text-ink-500 transition hover:text-ink-900"><x-icon name="instagram" class="h-3.5 w-3.5 text-sambal-600" /> {{ site_setting('instagram') }}</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="border-t border-ink-100">
             <div class="ng-container flex flex-col items-center justify-between gap-2 py-6 text-xs text-ink-400 md:flex-row">
-                <p>&copy; {{ now()->year }} NGuliner Magelang</p>
+                <p>&copy; {{ now()->year }} {{ site_setting('copyright') }}</p>
                 <p class="flex items-center gap-1.5">Support Resto &amp; UMKM Lokal</p>
             </div>
         </div>
